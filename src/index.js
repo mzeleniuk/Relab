@@ -20,7 +20,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'One More Soul to the Call'}, (videos) => {
+    this.videoSearch('Trending');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
@@ -38,7 +42,7 @@ class App extends Component {
 
         <div>
           <MuiThemeProvider>
-            <SearchBar />
+            <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
           </MuiThemeProvider>
 
           <MuiThemeProvider>
