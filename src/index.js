@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import ReactLogo from './logo.svg';
@@ -28,7 +29,9 @@ class App extends Component {
         </div>
 
         <div>
-          <SearchBar />
+          <MuiThemeProvider>
+            <SearchBar />
+          </MuiThemeProvider>
         </div>
       </div>
     );

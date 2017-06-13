@@ -27,3 +27,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.search-bar {
+  padding: 0 25%;
+}
