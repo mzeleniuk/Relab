@@ -31,3 +31,7 @@ body {
 .search-bar {
   padding: 0 25%;
 }
+
+.videos-list {
+  padding: 20px;
+}
