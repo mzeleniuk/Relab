@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
@@ -33,6 +34,10 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce((term) => {
+      this.videoSearch(term)
+    }, 500);
+
     return (
       <div>
         <div className="app-header">
@@ -42,7 +47,7 @@ class App extends Component {
 
         <div>
           <MuiThemeProvider>
-            <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+            <SearchBar onSearchTermChange={videoSearch}/>
           </MuiThemeProvider>
 
           <MuiThemeProvider>
