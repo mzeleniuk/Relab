@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 import YTSearch from 'youtube-api-search';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
@@ -36,6 +37,10 @@ class App extends Component {
 
           <MuiThemeProvider>
             <VideoList videos={this.state.videos}/>
+          </MuiThemeProvider>
+
+          <MuiThemeProvider>
+            <VideoDetail video={this.state.videos[0]}/>
           </MuiThemeProvider>
         </div>
       </div>
