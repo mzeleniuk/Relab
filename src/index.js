@@ -15,10 +15,16 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {videos: []};
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
     YTSearch({key: API_KEY, term: 'One More Soul to the Call'}, (videos) => {
-      this.setState({videos});
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -36,11 +42,13 @@ class App extends Component {
           </MuiThemeProvider>
 
           <MuiThemeProvider>
-            <VideoList videos={this.state.videos}/>
+            <VideoList
+              videos={this.state.videos}
+              onVideoSelect={selectedVideo => this.setState({selectedVideo})}/>
           </MuiThemeProvider>
 
           <MuiThemeProvider>
-            <VideoDetail video={this.state.videos[0]}/>
+            <VideoDetail video={this.state.selectedVideo}/>
           </MuiThemeProvider>
         </div>
       </div>

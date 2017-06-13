@@ -40,6 +40,12 @@ body {
   padding: 20px;
 }
 
+.videos-list-item {
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
 .video-detail {
   max-width: 45%;
   margin: 0 auto 20px auto;
