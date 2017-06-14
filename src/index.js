@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import VideosSearch from './videos_search/videos_search';
+import BooksList from './books_list/books_list';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
+
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import reducers from './books_list/reducers';
 
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
@@ -18,6 +23,8 @@ const styles = {
     zIndex: '1'
   }
 };
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 const App = function () {
   return (
@@ -38,12 +45,21 @@ const App = function () {
               <VideosSearch/>
             </div>
           </Tab>
+          <Tab label="Books List" buttonStyle={styles.tabItem}>
+            <div>
+              <BooksList/>
+            </div>
+          </Tab>
         </Tabs>
       </MuiThemeProvider>
     </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />
+  </Provider>, document.getElementById('root')
+);
 
 registerServiceWorker();
