@@ -1,8 +1,11 @@
 import React from 'react';
+import BookItemsList from './containers/book_items_list';
 
 const BooksList = function () {
   return (
-    <div>Books List module</div>
+    <div>
+      <BookItemsList/>
+    </div>
   );
 };
 
