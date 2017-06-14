@@ -1,69 +1,48 @@
-import _ from 'lodash';
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from './components/search_bar';
-import VideoList from './components/video_list';
-import VideoDetail from './components/video_detail';
-import YTSearch from 'youtube-api-search';
+import VideosSearch from './videos_search/videos_search';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Tabs, Tab} from 'material-ui/Tabs';
+
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import ReactLogo from './logo.svg';
 
-const API_KEY = 'AIzaSyAuQCVeNfKhtRk9KlChQPT1nO27DPO_5Ss';
+const styles = {
+  tabItem: {
+    backgroundColor: '#2d2d2d'
+  },
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      videos: [],
-      selectedVideo: null
-    };
-
-    this.videoSearch('Trending');
+  inkBar: {
+    backgroundColor: '#61dafb',
+    zIndex: '1'
   }
+};
 
-  videoSearch(term) {
-    YTSearch({key: API_KEY, term: term}, (videos) => {
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0]
-      });
-    });
-  }
-
-  render() {
-    const videoSearch = _.debounce((term) => {
-      this.videoSearch(term)
-    }, 500);
-
-    return (
-      <div>
-        <div className="app-header">
-          <img src={ReactLogo} className="react-logo" alt="logo"/>
-          <h2>Welcome to Relab</h2>
-        </div>
-
-        <div>
-          <MuiThemeProvider>
-            <SearchBar onSearchTermChange={videoSearch}/>
-          </MuiThemeProvider>
-
-          <MuiThemeProvider>
-            <VideoList
-              videos={this.state.videos}
-              onVideoSelect={selectedVideo => this.setState({selectedVideo})}/>
-          </MuiThemeProvider>
-
-          <MuiThemeProvider>
-            <VideoDetail video={this.state.selectedVideo}/>
-          </MuiThemeProvider>
-        </div>
+const App = function () {
+  return (
+    <div>
+      <div className="app-header">
+        <img src={ReactLogo} className="react-logo" alt="logo"/>
+        <h2>
+          Welcome to <span className="project-name">Relab</span> - a playground for&nbsp;
+          <a href="https://facebook.github.io/react" className="react-link" target="_blank"
+             rel="noopener noreferrer">React</a> Apps
+        </h2>
       </div>
-    );
-  }
-}
+
+      <MuiThemeProvider>
+        <Tabs inkBarStyle={styles.inkBar}>
+          <Tab label="Videos Search" buttonStyle={styles.tabItem}>
+            <div>
+              <VideosSearch/>
+            </div>
+          </Tab>
+        </Tabs>
+      </MuiThemeProvider>
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
