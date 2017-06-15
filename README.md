@@ -17,3 +17,7 @@ Run `npm start` in Terminal.
 ### Video Search
 
 Search and watch videos from YouTube.
+
+### Books List
+
+View a book's details by selecting it from the list.

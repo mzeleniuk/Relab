@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider';
 
 const style = {
   minHeight: 80,
-  minWidth: 400,
+  minWidth: 250,
   margin: 20,
   padding: 20,
   textAlign: 'center',
