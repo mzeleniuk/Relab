@@ -17,7 +17,7 @@ class VideosSearch extends Component {
       selectedVideo: null
     };
 
-    this.videoSearch('Trending');
+    this.videoSearch('ReactJS');
   }
 
   videoSearch(term) {

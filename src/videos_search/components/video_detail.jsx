@@ -17,8 +17,8 @@ const VideoDetail = ({video}) => {
   return (
     <div className="video-detail">
       <Card>
-        <CardMedia className="video-container">
-          <iframe src={url} title={video.snippet.title} className="embed-item"></iframe>
+        <CardMedia className="embed-responsive embed-responsive-16by9">
+          <iframe src={url} title={video.snippet.title} className="embed-responsive-item"></iframe>
         </CardMedia>
 
         <CardTitle title={video.snippet.title}/>
