@@ -10,6 +10,7 @@ class BookItemsList extends Component {
       return (
         <ListItem key={book.title}
                   primaryText={book.title}
+                  secondaryText="Click to view details"
                   onClick={() => this.props.selectBook(book)}/>
       );
     });
@@ -17,7 +18,7 @@ class BookItemsList extends Component {
 
   render() {
     return (
-      <List>
+      <List className="books-list">
         {this.renderList()}
       </List>
     );
