@@ -8,6 +8,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
+import ReduxPromise from 'redux-promise';
 import reducers from './books_list/reducers';
 
 import registerServiceWorker from './registerServiceWorker';
@@ -25,7 +26,7 @@ const styles = {
   }
 };
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const App = function () {
   return (
