@@ -13,10 +13,22 @@ const styles = {
 };
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {term: ''};
+    this.onInputChange = this.onInputChange.bind(this);
+  }
+
+  onInputChange(event) {
+    this.setState({term: event.target.value});
+  }
+
   render() {
     return (
       <form className="city-search-block">
-        <TextField hintText="Type a city name" floatingLabelText="Search for city" style={styles.searchInput}/>
+        <TextField hintText="Type a city name" floatingLabelText="Search for city" style={styles.searchInput}
+                   value={this.state.term} onChange={this.onInputChange}/>
         <RaisedButton label="Search" primary={true} style={styles.searchButton}/>
       </form>
     );
