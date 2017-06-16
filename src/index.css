@@ -106,3 +106,8 @@ body {
   display: inline-block;
   vertical-align: top;
 }
+
+.city-search-block {
+  padding: 0 25%;
+  text-align: center;
+}
