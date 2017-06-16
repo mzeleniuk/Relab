@@ -24,12 +24,16 @@ class SearchBar extends Component {
     this.setState({term: event.target.value});
   }
 
+  onFormSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form className="city-search-block">
+      <form className="city-search-block" onSubmit={this.onFormSubmit}>
         <TextField hintText="Type a city name" floatingLabelText="Search for city" style={styles.searchInput}
                    value={this.state.term} onChange={this.onInputChange}/>
-        <RaisedButton label="Search" primary={true} style={styles.searchButton}/>
+        <RaisedButton label="Search" primary={true} style={styles.searchButton} type="submit"/>
       </form>
     );
   }
