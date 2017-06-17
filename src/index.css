@@ -111,3 +111,8 @@ body {
   padding: 0 25%;
   text-align: center;
 }
+
+.cities-table {
+  max-width: 80%;
+  margin: 20px auto;
+}
