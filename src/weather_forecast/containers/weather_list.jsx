@@ -4,6 +4,19 @@ import Paper from 'material-ui/Paper';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 class WeatherList extends Component {
+  renderWeather(cityData) {
+    const city = cityData.city.name;
+
+    return (
+      <TableRow key={city}>
+        <TableRowColumn>{city}</TableRowColumn>
+        <TableRowColumn>Some Temperature</TableRowColumn>
+        <TableRowColumn>Some Pressure</TableRowColumn>
+        <TableRowColumn>Some Humidity</TableRowColumn>
+      </TableRow>
+    );
+  }
+
   render() {
     return (
       <Paper zDepth={4} className="cities-table">
@@ -18,18 +31,7 @@ class WeatherList extends Component {
           </TableHeader>
 
           <TableBody displayRowCheckbox={false} showRowHover={true}>
-            <TableRow>
-              <TableRowColumn>1</TableRowColumn>
-              <TableRowColumn>John Smith</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-              <TableRowColumn>Some Humidity</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>2</TableRowColumn>
-              <TableRowColumn>Randal White</TableRowColumn>
-              <TableRowColumn>Unemployed</TableRowColumn>
-              <TableRowColumn>Some Humidity</TableRowColumn>
-            </TableRow>
+            {this.props.weather.map(this.renderWeather)}
           </TableBody>
         </Table>
       </Paper>
