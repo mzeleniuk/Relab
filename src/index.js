@@ -9,7 +9,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import ReduxPromise from 'redux-promise';
-import reducers from './books_list/reducers';
+import reducers from './root_reducer';
 
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
