@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import {Sparklines, SparklinesLine} from 'react-sparklines';
+import Chart from '../components/chart';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
@@ -13,9 +13,7 @@ class WeatherList extends Component {
       <TableRow key={city}>
         <TableRowColumn>{city}</TableRowColumn>
         <TableRowColumn>
-          <Sparklines width="180" height="80" data={temperatures}>
-            <SparklinesLine color="#ff5722"/>
-          </Sparklines>
+          <Chart data={temperatures} color="#ff5722"/>
         </TableRowColumn>
         <TableRowColumn>Some Pressure</TableRowColumn>
         <TableRowColumn>Some Humidity</TableRowColumn>
