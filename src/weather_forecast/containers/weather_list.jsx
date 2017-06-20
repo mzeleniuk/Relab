@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Chart from '../components/chart';
+import CityMap from '../components/city_map';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
@@ -11,10 +12,13 @@ class WeatherList extends Component {
     const temperatures = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp - 273);
     const pressures = cityData.list.map(weather => weather.main.pressure);
     const humidity = cityData.list.map(weather => weather.main.humidity);
+    const {lon, lat} = cityData.city.coord;
 
     return (
       <TableRow key={city}>
-        <TableRowColumn>{city}</TableRowColumn>
+        <TableRowColumn>
+          <CityMap lon={lon} lat={lat}/>
+        </TableRowColumn>
         <TableRowColumn>
           <Chart data={temperatures} color="#ff5722" units="C"/>
         </TableRowColumn>

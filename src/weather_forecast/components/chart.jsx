@@ -10,7 +10,7 @@ function average(data) {
 const Chart = (props) => {
   return (
     <div>
-      <Sparklines data={props.data}>
+      <Sparklines data={props.data} height={120}>
         <SparklinesLine color={props.color}/>
         <SparklinesReferenceLine type="avg"/>
       </Sparklines>
