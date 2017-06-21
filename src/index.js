@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import VideosSearch from './videos_search/videos_search';
 import BooksList from './books_list/books_list';
 import WeatherForecast from './weather_forecast/weather_forecast';
+import Blog from './blog/blog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
@@ -55,6 +56,11 @@ const App = function () {
           <Tab label="Weather Forecast" buttonStyle={styles.tabItem}>
             <div>
               <WeatherForecast/>
+            </div>
+          </Tab>
+          <Tab label="Blog" buttonStyle={styles.tabItem}>
+            <div>
+              <Blog/>
             </div>
           </Tab>
         </Tabs>
