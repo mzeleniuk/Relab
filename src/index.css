@@ -54,6 +54,10 @@ body {
   text-align: left;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .search-bar {
   padding: 0 25%;
 }
@@ -122,4 +126,9 @@ body {
 .city-map {
   min-height: 200px;
   padding: 10px 0;
+}
+
+.blog-container {
+  max-width: 768px;
+  margin: 20px auto;
 }
