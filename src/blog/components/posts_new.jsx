@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import {createPost} from '../actions/index';
 
 class PostsNew extends Component {
   render() {
@@ -14,7 +15,7 @@ class PostsNew extends Component {
           <Subheader>Create a New Post</Subheader>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(this.props.createPost)}>
           <div>
             <TextField type="text" hintText="Type Post's Title"
                        floatingLabelText="Title" fullWidth={true} {...title}/>
@@ -42,4 +43,4 @@ class PostsNew extends Component {
 export default reduxForm({
   form: 'PostsNewForm',
   fields: ['title', 'categories', 'content']
-})(PostsNew);
+}, null, {createPost})(PostsNew);
