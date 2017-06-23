@@ -132,3 +132,7 @@ body {
   max-width: 768px;
   margin: 20px auto;
 }
+
+.form-footer {
+  margin-top: 20px;
+}
