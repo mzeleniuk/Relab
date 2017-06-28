@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {reduxForm} from 'redux-form';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {createPost} from '../actions/index';
+import {Link} from 'react-router';
 
 class PostsNew extends Component {
   render() {
@@ -17,22 +19,23 @@ class PostsNew extends Component {
 
         <form onSubmit={handleSubmit(this.props.createPost)}>
           <div>
-            <TextField type="text" hintText="Type Post's Title"
-                       floatingLabelText="Title" fullWidth={true} {...title}/>
+            <TextField hintText="Type Post's Title" floatingLabelText="Title" fullWidth={true}
+                       errorText={title.touched ? title.error : ''} {...title}/>
           </div>
 
           <div>
-            <TextField type="text" hintText="Type Post's Categories"
-                       floatingLabelText="Categories" fullWidth={true} {...categories}/>
+            <TextField hintText="Type Post's Categories" floatingLabelText="Categories" fullWidth={true}
+                       errorText={categories.touched ? categories.error : ''} {...categories}/>
           </div>
 
           <div>
-            <TextField type="text" multiLine={true} hintText="Type Post's Content"
-                       floatingLabelText="Content" fullWidth={true} {...content}/>
+            <TextField multiLine={true} hintText="Type Post's Content" floatingLabelText="Content"
+                       errorText={content.touched ? content.error : ''} fullWidth={true} {...content}/>
           </div>
 
           <div className="form-footer text-right">
-            <RaisedButton label="Submit" primary={true} type="submit"/>
+            <FlatButton label="Cancel" secondary={true} containerElement={<Link to="/"/>}/>
+            <RaisedButton label="Submit" className="m-l-sm pull-right" primary={true} type="submit"/>
           </div>
         </form>
       </div>
@@ -40,7 +43,26 @@ class PostsNew extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.title) {
+    errors.title = 'Please enter a Title';
+  }
+
+  if (!values.categories) {
+    errors.categories = 'Please enter categories';
+  }
+
+  if (!values.content) {
+    errors.content = 'Please enter some content';
+  }
+
+  return errors;
+}
+
 export default reduxForm({
   form: 'PostsNewForm',
-  fields: ['title', 'categories', 'content']
+  fields: ['title', 'categories', 'content'],
+  validate
 }, null, {createPost})(PostsNew);

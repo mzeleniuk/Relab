@@ -58,6 +58,46 @@ body {
   text-align: right;
 }
 
+.m-l-xs {
+  margin-left: 5px;
+}
+
+.m-l-sm {
+  margin-left: 10px;
+}
+
+.m-l-md {
+  margin-left: 15px;
+}
+
+.m-l-lg {
+  margin-left: 20px;
+}
+
+.m-r-xs {
+  margin-right: 5px;
+}
+
+.m-r-sm {
+  margin-right: 10px;
+}
+
+.m-r-md {
+  margin-right: 15px;
+}
+
+.m-r-lg {
+  margin-right: 20px;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
 .search-bar {
   padding: 0 25%;
 }
