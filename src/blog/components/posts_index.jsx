@@ -15,7 +15,8 @@ class PostsIndex extends Component {
     return this.props.posts.map((post) => {
       return (
         <ListItem key={post.id} primaryText={post.title}
-                  secondaryText={'Categories: ' + post.categories}/>
+                  secondaryText={'Categories: ' + post.categories}
+                  containerElement={<Link to={`/posts/${post.id}`}/>}/>
       );
     });
   }
