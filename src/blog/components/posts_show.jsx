@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchPost, deletePost} from '../actions/index';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -7,12 +8,19 @@ import {Link} from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
 class PostsShow extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
   componentWillMount() {
     this.props.fetchPost(this.props.params.id);
   }
 
   onDeleteClick() {
-    this.props.deletePost(this.props.params.id);
+    this.props.deletePost(this.props.params.id)
+      .then(() => {
+        this.context.router.push('/')
+      });
   }
 
   render() {
