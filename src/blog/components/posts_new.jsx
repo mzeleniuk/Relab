@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {reduxForm} from 'redux-form';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
@@ -8,6 +9,17 @@ import {createPost} from '../actions/index';
 import {Link} from 'react-router';
 
 class PostsNew extends Component {
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  onSubmit(props) {
+    this.props.createPost(props)
+      .then(() => {
+        this.context.router.push('/')
+      });
+  }
+
   render() {
     const {fields: {title, categories, content}, handleSubmit} = this.props;
 
@@ -17,7 +29,7 @@ class PostsNew extends Component {
           <Subheader>Create a New Post</Subheader>
         </div>
 
-        <form onSubmit={handleSubmit(this.props.createPost)}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div>
             <TextField hintText="Type Post's Title" floatingLabelText="Title" fullWidth={true}
                        errorText={title.touched ? title.error : ''} {...title}/>
