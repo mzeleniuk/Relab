@@ -25,3 +25,7 @@ View a book's details by selecting it from the list.
 ### Weather Forecast
 
 Get 5 days weather forecast at any location or city.
+
+### Blog
+
+Basic blog platform, mainly for short notes.
