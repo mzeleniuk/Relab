@@ -4,10 +4,20 @@ import {fetchPosts} from '../actions/index';
 import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'material-ui/Subheader';
+import {List, ListItem} from 'material-ui/List';
 
 class PostsIndex extends Component {
   componentWillMount() {
     this.props.fetchPosts();
+  }
+
+  renderPosts() {
+    return this.props.posts.map((post) => {
+      return (
+        <ListItem key={post.id} primaryText={post.title}
+                  secondaryText={'Categories: ' + post.categories}/>
+      );
+    });
   }
 
   render() {
@@ -21,9 +31,17 @@ class PostsIndex extends Component {
         <div className="text-center">
           <Subheader>List of Posts</Subheader>
         </div>
+
+        <List>
+          {this.renderPosts()}
+        </List>
       </div>
     );
   }
 }
 
-export default connect(null, {fetchPosts})(PostsIndex);
+function mapStateToProps(state) {
+  return {posts: state.posts.all}
+}
+
+export default connect(mapStateToProps, {fetchPosts})(PostsIndex);
