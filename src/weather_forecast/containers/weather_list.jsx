@@ -8,6 +8,8 @@ import CityMap from '../components/city_map';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
+    if (!cityData) { return }
+
     const city = cityData.city.name;
     const temperatures = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp - 273);
     const pressures = cityData.list.map(weather => weather.main.pressure);
