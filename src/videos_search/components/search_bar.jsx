@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import TextField from 'material-ui/TextField';
 
 class SearchBar extends Component {
@@ -24,8 +23,5 @@ class SearchBar extends Component {
     );
   };
 }
-
-// Needed for onTouchTap - http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 export default SearchBar;
