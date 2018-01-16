@@ -38,7 +38,7 @@ class VideosSearch extends Component {
       <div>
         <div>
           <MuiThemeProvider>
-            <SearchBar onSearchTermChange={videoSearch}/>
+            <SearchBar onSearchTermChange={videoSearch} videos={this.state.videos}/>
           </MuiThemeProvider>
 
           <MuiThemeProvider>

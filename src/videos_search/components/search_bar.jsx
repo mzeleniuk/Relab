@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -8,17 +8,19 @@ class SearchBar extends Component {
     this.state = {term: ''};
   };
 
-  onInputChange(term) {
+  onInputChange = (term) => {
     this.setState({term});
     this.props.onSearchTermChange(term);
-  }
+  };
 
   render() {
+    let videos = this.props.videos.map(video => video.snippet.title);
+
     return (
       <div className="search-bar">
-        <TextField type="text" fullWidth={true} hintText="I'm looking for..."
-                   floatingLabelText="Search for videos" value={this.state.term}
-                   onChange={event => this.onInputChange(event.target.value)} autoFocus="true"/>
+        <AutoComplete hintText="I'm looking for..." floatingLabelText="Search for videos" fullWidth={true}
+                      searchText={this.state.term} onUpdateInput={this.onInputChange} dataSource={videos}
+                      filter={AutoComplete.noFilter} openOnFocus={true}/>
       </div>
     );
   };
