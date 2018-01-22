@@ -10,14 +10,14 @@ class WeatherList extends Component {
   renderWeather(cityData) {
     if (!cityData) { return }
 
-    const city = cityData.city.name;
+    const city = cityData.city;
     const temperatures = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp - 273);
     const pressures = cityData.list.map(weather => weather.main.pressure);
     const humidity = cityData.list.map(weather => weather.main.humidity);
     const {lon, lat} = cityData.city.coord;
 
     return (
-      <TableRow key={city}>
+      <TableRow key={city.id}>
         <TableRowColumn>
           <CityMap lon={lon} lat={lat}/>
         </TableRowColumn>

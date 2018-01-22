@@ -34,3 +34,4 @@ Basic blog platform, mainly for short notes.
 
 * REACT_APP_GOOGLE_MAPS_API_KEY - Google Maps API key
 * REACT_APP_YOUTUBE_API_KEY - YouTube API key
+* REACT_APP_OPEN_WEATHER_MAP_API_KEY - Open Weather Map API key
