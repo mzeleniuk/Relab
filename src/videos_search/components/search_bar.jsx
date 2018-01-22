@@ -20,7 +20,7 @@ class SearchBar extends Component {
       <div className="search-bar">
         <AutoComplete hintText="I'm looking for..." floatingLabelText="Search for videos" fullWidth={true}
                       searchText={this.state.term} onUpdateInput={this.onInputChange} dataSource={videos}
-                      filter={AutoComplete.noFilter} openOnFocus={true}/>
+                      filter={AutoComplete.noFilter} autoFocus={true}/>
       </div>
     );
   };

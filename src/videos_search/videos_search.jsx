@@ -6,8 +6,6 @@ import VideoDetail from './components/video_detail';
 import YTSearch from 'youtube-api-search';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const API_KEY = 'AIzaSyAuQCVeNfKhtRk9KlChQPT1nO27DPO_5Ss';
-
 class VideosSearch extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +19,7 @@ class VideosSearch extends Component {
   }
 
   videoSearch(term) {
-    YTSearch({key: API_KEY, term: term}, (videos) => {
+    YTSearch({key: process.env.REACT_APP_YOUTUBE_API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
