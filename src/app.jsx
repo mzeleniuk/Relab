@@ -5,6 +5,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import VideosSearch from './videos_search/videos_search';
 import BooksList from './books_list/books_list';
 import WeatherForecast from './weather_forecast/weather_forecast';
+import Mathematics from './mathematics/mathematics';
 import ReactLogo from './logo.svg';
 
 const styles = {
@@ -52,6 +53,11 @@ class App extends Component {
             <Tab label="Blog" buttonStyle={styles.tabItem}>
               <div>
                 {this.props.children}
+              </div>
+            </Tab>
+            <Tab label="Math" buttonStyle={styles.tabItem}>
+              <div>
+                <Mathematics/>
               </div>
             </Tab>
           </Tabs>
