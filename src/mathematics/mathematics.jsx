@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Paper, TextField, Subheader} from 'material-ui';
+import {Paper, TextField, Subheader, RaisedButton} from 'material-ui';
+import {green500, amber500} from 'material-ui/styles/colors';
 
 const styles = {
   paperStyle: {
@@ -8,6 +9,15 @@ const styles = {
   },
   subHeaderStyle: {
     padding: 0
+  },
+  buttonStyle: {
+    margin: 12
+  },
+  successStyle: {
+    color: green500
+  },
+  failureStyle: {
+    color: amber500
   }
 };
 
@@ -19,7 +29,11 @@ class Mathematics extends Component {
       operandOne: null,
       operandTwo: null,
       operator: null,
-      answer: ""
+      answer: "",
+      result: null,
+      hintText: "",
+      success: false,
+      failure: false
     };
   };
 
@@ -32,10 +46,46 @@ class Mathematics extends Component {
   };
 
   onInputChange = (event) => {
-    this.setState({answer: event.target.value});
+    const {operandOne, operator, operandTwo} = this.state;
+
+    let successMessage = "";
+    let success = false;
+
+    if (Number(event.target.value) === Math.round(eval(operandOne + operator + operandTwo))) {
+      successMessage = "Correct! Well done!";
+      success = true;
+    }
+
+    this.setState({
+      answer: event.target.value,
+      hintText: successMessage,
+      success: success,
+      failure: false
+    });
+  };
+
+  validate = () => {
+    const {operandOne, operator, operandTwo, answer} = this.state;
+    const correctAnswer = Math.round(eval(operandOne + operator + operandTwo));
+
+    let failureMessage = "";
+    let failure = false;
+
+    if (Number(answer) !== correctAnswer) {
+      failureMessage = `The correct answer is ${correctAnswer}, please try again.`;
+      failure = true;
+    }
+
+    this.setState({
+      result: correctAnswer,
+      hintText: failureMessage,
+      failure: failure
+    });
   };
 
   render() {
+    const {operandOne, operator, operandTwo, answer, hintText, success, failure} = this.state;
+
     return (
       <div className="text-center">
         <Paper style={styles.paperStyle} zDepth={4}>
@@ -44,11 +94,20 @@ class Mathematics extends Component {
           </Subheader>
 
           <h2>
-            {this.state.operandOne} {this.state.operator} {this.state.operandTwo} = {this.state.answer}
+            <span>{operandOne} {operator} {operandTwo} = </span>
+            <span style={success ? styles.successStyle : (failure ? styles.failureStyle : null)}>
+              {answer}
+            </span>
           </h2>
 
+          {success ? <Subheader style={styles.successStyle}>{hintText}</Subheader> : null}
+          {failure ? <Subheader style={styles.failureStyle}>{hintText}</Subheader> : null}
+
           <TextField hintText="Enter the number" floatingLabelText="Your answer"
-                     value={this.state.answer} onChange={this.onInputChange}/>
+                     value={answer} onChange={this.onInputChange}/>
+
+          <RaisedButton label="Give up" primary={true} onClick={this.validate}
+                        style={styles.buttonStyle} disabled={success || failure}/>
         </Paper>
       </div>
     )
