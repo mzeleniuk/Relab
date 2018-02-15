@@ -30,6 +30,10 @@ Get 5 days weather forecast at any location or city.
 
 Basic blog platform, mainly for short notes.
 
+### Math
+
+Generate random mathematical equations and try to solve them.
+
 ## Environment variables
 
 * REACT_APP_GOOGLE_MAPS_API_KEY - Google Maps API key
