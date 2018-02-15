@@ -8,16 +8,24 @@ const styles = {
     padding: "20px"
   },
   subHeaderStyle: {
+    fontSize: "20px",
+    lineHeight: "26px",
     padding: 0
   },
   buttonStyle: {
     margin: 12
   },
   successStyle: {
-    color: green500
+    color: green500,
+    fontSize: "18px",
+    lineHeight: "22px",
+    padding: 0
   },
   failureStyle: {
-    color: amber500
+    color: amber500,
+    fontSize: "18px",
+    lineHeight: "22px",
+    padding: 0
   }
 };
 
@@ -83,6 +91,19 @@ class Mathematics extends Component {
     });
   };
 
+  newEquation = () => {
+    this.setState({
+      operandOne: Math.round(Math.random() * 999),
+      operandTwo: Math.round(Math.random() * 999),
+      operator: ["+", "-", "*", "/"][Math.floor(Math.random() * 4)],
+      answer: "",
+      result: null,
+      hintText: "",
+      success: false,
+      failure: false
+    });
+  };
+
   render() {
     const {operandOne, operator, operandTwo, answer, hintText, success, failure} = this.state;
 
@@ -95,7 +116,7 @@ class Mathematics extends Component {
 
           <h2>
             <span>{operandOne} {operator} {operandTwo} = </span>
-            <span style={success ? styles.successStyle : (failure ? styles.failureStyle : null)}>
+            <span style={success ? {color: green500} : (failure ? {color: amber500} : null)}>
               {answer}
             </span>
           </h2>
@@ -103,11 +124,15 @@ class Mathematics extends Component {
           {success ? <Subheader style={styles.successStyle}>{hintText}</Subheader> : null}
           {failure ? <Subheader style={styles.failureStyle}>{hintText}</Subheader> : null}
 
-          <TextField hintText="Enter the number" floatingLabelText="Your answer"
-                     value={answer} onChange={this.onInputChange}/>
+          <TextField hintText="Enter the number" floatingLabelText="Your answer" value={answer}
+                     onChange={this.onInputChange} disabled={success || failure}/>
 
-          <RaisedButton label="Give up" primary={true} onClick={this.validate}
+          <RaisedButton label="Give up" secondary={true} onClick={this.validate}
                         style={styles.buttonStyle} disabled={success || failure}/>
+          <br/>
+
+          <RaisedButton label="New equation" primary={true} style={styles.buttonStyle}
+                        onClick={this.newEquation}/>
         </Paper>
       </div>
     )
